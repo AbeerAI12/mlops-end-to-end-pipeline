@@ -1,0 +1,5 @@
+outs:
+- md5: bb30d0bf16d10a6c578b1fdbbbfa2bb4
+  size: 855
+  hash: md5
+  path: imputer.pkl

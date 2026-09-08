@@ -1,0 +1,5 @@
+paths:
+  model_path: "final_model.pkl"
+  scaler_path: "scaler.pkl"
+  imputer_path: "imputer.pkl"
+  data_path: "orders_merged.parquet"
