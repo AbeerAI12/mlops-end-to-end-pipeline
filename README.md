@@ -28,6 +28,17 @@ This project transforms an end-to-end Machine Learning pipeline for order delive
 ├── app.py                  # FastAPI application entrypoint
 ├── pipeline.py             # Inference & pipeline logic
 ├── test_pipeline.py        # Automated test suite (pytest)
+
+
+## 🚀 How to Run
+
+1. Clone the repo:
+   `git clone https://github.com/AbeerAl12/mlops-end-to-end-pipeline.git`
+
+2. Run with Docker:
+   `docker-compose up --build`
+
+
 ├── Dockerfile              # Container configuration
 ├── docker-compose.yml      # Service orchestration
 ├── *.dvc                   # DVC tracking pointers for model artifacts & data
