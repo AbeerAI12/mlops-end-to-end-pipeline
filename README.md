@@ -1,37 +1,34 @@
-# 🚀 Order Delivery Inference Service (MLOps Task 3)
+# 🚀 Order Delivery Inference Service
 
 ## 📌 Overview
-This project transforms experimental Jupyter notebooks into a production-grade inference service. It provides a RESTful API to predict order delivery status (`Late` vs. `On time`) along with prediction probabilities, using saved fitted transformers and registered models without re-training at inference time.
+This project transforms an end-to-end Machine Learning pipeline for order delivery prediction into a production-ready inference service. It covers data version control, experiment tracking, API deployment with FastAPI, containerization, and automated CI/CD workflows.
 
 ## 🛠 Tech Stack & Tools
-* **Data Versioning:** DVC
-* **Data Validation:** Great Expectations
-* **Experiment Tracking & Model Registry:** MLflow
-* **API Framework:** FastAPI
-* **Containerization:** Docker & Docker Compose
-* **Testing & Quality Assurance:** Pytest & Pre-commit Hooks
-* **CI/CD:** GitHub Actions
+* **Data Version Control (DVC):** Versioning datasets (`.parquet`) and pipeline models (`.pkl.dvc`).
+* **Experiment Tracking:** MLflow (`mlflow.db` & `mlruns`).
+* **API Framework:** FastAPI (`app.py`).
+* **Containerization:** Docker & Docker Compose (`Dockerfile`, `docker-compose.yml`).
+* **Testing:** Pytest (`test_pipeline.py`).
+* **CI/CD:** GitHub Actions workflows (`.github/workflows`).
 
-## 🏗 Key Features & Architecture
-- **Notebooks to Modules:** Refactored pipelines into clean Python modules (`src/`) covering data access, validation, preprocessing, and prediction.
-- **Data & Model Lineage:** Dataset versioning via `DVC` and model tracking/versioning using `MLflow Model Registry`.
-- **Data Validation:** Schema and range validation on incoming order data using `Great Expectations` to handle missing/malformed payloads safely.
-- **FastAPI Service:**
-  - `GET /health` - Health check route.
-  - `GET /info` - Model info and version details.
-  - `POST /predict` - Single & batch order predictions (returns prediction, probability, and model version).
-- **Automated Testing & CI/CD:** Unit, data, and integration tests with `pytest` triggered automatically via `GitHub Actions` on every push.
+## 🏗 Key Features
+- **Data & Model Versioning:** Tracked feature processing, datasets, and saved artifacts (`imputer`, `scaler`, `final_model`) using `DVC`.
+- **Experiment Logging:** Recorded pipeline runs and metrics using `MLflow`.
+- **RESTful API Service:** Built lightweight endpoint serving via `FastAPI` (`app.py`).
+- **Containerization:** Containerized application setup with `Docker` and orchestrated using `docker-compose`.
+- **Automated Testing & CI/CD:** Integrated `pytest` suite running automatically through `GitHub Actions` pipelines.
 
 ## 🗂 Project Structure
 ```text
-├── app/                  # FastAPI app and API schemas
-├── config/               # Configuration files (no hardcoded paths)
-├── data/                 # DVC tracked data
-├── models/               # Saved fitted artifacts & model registry links
-├── notebooks/            # Original exploratory notebooks
-├── src/                  # Core Python modules (preprocessing, features, prediction)
-├── tests/                # Unit & integration tests
-├── .pre-commit-config.yaml
-├── Dockerfile
-├── docker-compose.yml
-└── README.md
+├── .dvc/                   # DVC configuration
+├── config/                 # Configuration files
+├── mlruns/ & mlflow.db     # MLflow tracking data & database
+├── outputs/                # Generated artifacts
+├── *.ipynb                 # Pipeline development notebooks (01 to 06)
+├── app.py                  # FastAPI application entrypoint
+├── pipeline.py             # Inference & pipeline logic
+├── test_pipeline.py        # Automated test suite (pytest)
+├── Dockerfile              # Container configuration
+├── docker-compose.yml      # Service orchestration
+├── *.dvc                   # DVC tracking pointers for model artifacts & data
+└── README.md               # Project documentation
